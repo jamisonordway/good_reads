@@ -10,7 +10,7 @@ describe 'User' do
     end
     it 'should show reviews associated with that book' do
       book = Book.create(title: 'The Hobbit')
-      review = book.reviews.create(username: 'Jamison', body: 'This book is pretty fun', rating: '4')
+      review = book.reviews.create(username: 'Jamison', body: 'This book is pretty fun', rating: '4', book_id: book.id)
 
       visit book_path(book)
       expect(page).to have_content(book.title)
