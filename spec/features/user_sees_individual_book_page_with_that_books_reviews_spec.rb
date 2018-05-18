@@ -7,6 +7,16 @@ describe 'User' do
 
     visit book_path(book)
     expect(page).to have_content(book.title)
-    end 
+    end
+    it 'should show reviews associated with that book' do
+      book = Book.create(title: 'The Hobbit')
+      review = book.reviews.create(username: 'Jamison', body: 'This book is pretty fun', rating: '4')
+
+      visit book_path(book)
+      expect(page).to have_content(book.title)
+      expect(page).to have_content(review.username)
+      expect(page).to have_content(review.body)
+      expect(page).to have_content(review.rating)
+    end
   end
 end
