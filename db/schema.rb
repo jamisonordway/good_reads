@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180518162124) do
+ActiveRecord::Schema.define(version: 20180518163754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 20180518162124) do
     t.string "username"
     t.text "body"
     t.string "rating"
-    t.bigint "books_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "books_id"
     t.index ["books_id"], name: "index_reviews_on_books_id"
   end
 
@@ -33,4 +33,5 @@ ActiveRecord::Schema.define(version: 20180518162124) do
     t.string "name"
   end
 
+  add_foreign_key "reviews", "books", column: "books_id"
 end
