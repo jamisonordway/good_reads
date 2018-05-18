@@ -18,5 +18,13 @@ describe 'User' do
       expect(page).to have_content(review.body)
       expect(page).to have_content(review.rating)
     end
+    it 'should show the average rating for that book' do
+      book = Book.create(title: 'Harry Potter')
+      review_1 = book.reviews.create(username: 'Tyler', body: 'it is pretty good', rating: '3', book_id: book.id)
+      review_2 = book.reviews.create(username: 'Cole', body: 'Love it', rating: '5', book_id: book.id)
+      visit book_path(book)
+
+      expect(page).to have_content(book.average_rating)
+    end
   end
 end
